@@ -1,0 +1,68 @@
+name: Build Docker Image
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - "*-?v[0-9]+*"
+
+env:
+  TEST_IMAGE: ${{ github.repository_owner }}:test
+  MULTI_IMAGE: ${{ github.repository }}
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ env.MULTI_IMAGE }}
+            ghcr.io/${{ github.repository }}
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build test image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_IMAGE }}
+      - name: Test Docker Image
+        run: |
+          docker run --rm ${{ env.TEST_IMAGE }} \
+          ThermoRawFileParser xic \
+          --input=/root/ThermoRawFileParser/ThermoRawFileParserTest/Data/small.RAW \
+          --json=/root/ThermoRawFileParser/xic_input_example.json
+      - name: Login to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=Multi-arch image for XIC utility
+          cache-from: type=registry,ref=user/app:latest
+          cache-to: type=inline

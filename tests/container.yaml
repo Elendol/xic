@@ -1,0 +1,31 @@
+schemaVersion: "2.0.0" # Make sure to test the latest schema version
+fileExistenceTests:
+  - name: "xic binary"
+    path: "/usr/bin/xic"
+    shouldExist: true
+    isExecutableBy: "any"
+  - name: "ThermoRawFileParser binary"
+    path: "/root/ThermoRawFileParser/bin/Release/ThermoRawFileParser.exe"
+    shouldExist: true
+  - name: "ThermoRawFileParser wrapper"
+    path: "/usr/bin/ThermoRawFileParser"
+    shouldExist: true
+    isExecutableBy: "any"
+commandTests:
+  - name: "ThermoRawFileParser xic help"
+    command: "ThermoRawFileParser"
+    args: ["xic", "--help"]
+    expectedError:
+      - "usage is"
+    exitCode: 255
+  - name: "ThermoRawFileParser xic"
+    command: "ThermoRawFileParser"
+    args:
+      [
+        "xic",
+        "--input=/root/ThermoRawFileParser/ThermoRawFileParserTest/Data/small.RAW",
+        "--json=/root/ThermoRawFileParser/xic_input_example.json",
+      ]
+    exitCode: 0
+    expectedOutput:
+      - "Processing completed 0 errors"
