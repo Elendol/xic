@@ -9,7 +9,7 @@ on:
       - "*-?v[0-9]+*"
 
 env:
-  TEST_IMAGE: ${{ github.repository_owner }}:test
+  TEST_IMAGE: elendol:test
   MULTI_IMAGE: ${{ github.repository }}
 
 jobs:
