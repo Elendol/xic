@@ -47,7 +47,9 @@ jobs:
           docker run --rm ${{ env.TEST_IMAGE }} \
           ThermoRawFileParser xic \
           --input=/root/ThermoRawFileParser/ThermoRawFileParserTest/Data/small.RAW \
-          --json=/root/ThermoRawFileParser/xic_input_example.json
+          --json=/root/ThermoRawFileParser/xic_input_example.json \
+          --output_file=xic_output.json
+          xic --xic-json /root/ThermoRawFileParser/xic_input_example.json --xic-output xic_output.json
       - name: Login to GHCR
         uses: docker/login-action@v2
         with:
