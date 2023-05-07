@@ -1,6 +1,5 @@
 use io::OutputContent;
 use plotters::prelude::*;
-use serde_json;
 use std::fs::read_to_string;
 
 use clap::Parser;

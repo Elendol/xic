@@ -1,7 +1,6 @@
 use camino::{Utf8Path, Utf8PathBuf};
 use clap::Parser;
 use displaydoc::Display;
-use tracing::{event, instrument, Level};
 
 fn existing_file(raw: &str) -> Result<Utf8PathBuf, String> {
     let pathbuf = Utf8Path::new(raw)
