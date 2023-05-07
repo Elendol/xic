@@ -1,1 +1,4 @@
 *.raw filter=lfs diff=lfs merge=lfs -text
+
+tests/xic_input.json linguist-generated
+tests/xic_output.json linguist-generated

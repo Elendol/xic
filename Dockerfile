@@ -24,3 +24,7 @@ RUN set -eux  \
 COPY --from=rust-build-env /root/target/release/xic /usr/bin/xic
 RUN chmod +x /usr/bin/xic
 WORKDIR /workspace
+
+LABEL org.opencontainers.image.source=https://github.com/Elendol/xic
+LABEL org.opencontainers.image.licenses=MIT
+LABEL org.opencontainers.image.authors=Elendol

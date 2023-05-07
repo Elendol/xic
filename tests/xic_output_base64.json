@@ -1,0 +1,28 @@
+{
+  "OutputMeta": {
+    "base64": true,
+    "timeunit": "minutes"
+  },
+  "Content": [
+    {
+      "Meta": {
+        "MzStart": 673.35626637000007,
+        "MzEnd": 673.36973363,
+        "RtStart": 0.004935,
+        "RtEnd": 0.48723666666666665
+      },
+      "RetentionTimes": "ZjGx+bg2dD+CXqWoICyAP9ydtdsuNLM/v1Ctq+/psz9l7HHMn1zCP/umwx2CvcI/HdRY1aVZyz8p2GzSWr7LPx0QDuNbRdI/1UZib0990j/p/temnvLWP87s4E2kIdc/EA7jW0Vs2z/kH5Be57nbPw==",
+      "Intensities": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEIpOkAAAAAAAAAAAAAAAGCBE5s/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIFhLdUAAAAAAAAAAAAAAAGAiD1VAAAAAAAAAAAAAAAAAE66CQA=="
+    },
+    {
+      "Meta": {
+        "MzStart": 867.325,
+        "MzEnd": 867.365,
+        "RtStart": 87.56,
+        "RtEnd": 99.56
+      },
+      "RetentionTimes": null,
+      "Intensities": null
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "mz":673.363,
+    "tolerance":10,
+    "tolerance_unit": "ppm",
+  },
+  {
+    "mz":867.345,
+    "tolerance": 0.02,
+    "tolerance_unit": "da",
+    "rt_start":87.56,
+    "rt_end":99.56
+  }
+]

@@ -8,7 +8,23 @@ publish = false
 protocol = "sparse"
 
 [dependencies]
+aws-config = "0.55.2"
+aws-sdk-s3 = "0.27.0"
+camino = "1.1.4"
+clap = { version = "4.2.7", features = ["derive"] }
+displaydoc = "0.2.4"
+miette = { version = "5.8.0", features = ["fancy"] }
+owo-colors = "3.5.0"
 plotters = "0.3.4"
+serde = { version = "1.0.162", features = ["derive"] }
+serde_json = "1.0.96"
+thiserror = "1.0.40"
+tokio = { version = "1.28.0", features = ["full"] }
+tracing = { version = "0.1.37", features = [
+    "release_max_level_debug",
+    "max_level_trace"
+] }
+tracing-subscriber = { version = "0.3.17", features = ["env-filter", "json"] }
 
 # The profile that 'cargo dist' will build with
 [profile.dist]
