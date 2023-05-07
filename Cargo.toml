@@ -2,6 +2,7 @@
 name = "xic"
 version = "0.1.0"
 edition = "2021"
+publish = false
 
 [registries.crates-io]
 protocol = "sparse"
