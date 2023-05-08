@@ -119,14 +119,14 @@ fn main() -> Result<()> {
 
     root_area.fill(&WHITE).into_diagnostic()?;
 
-    let top = xic_plot.clone().intensity_max + (5.0 / 100.0 * xic_plot.clone().intensity_max);
+    let top = xic_plot.intensity_max + (5.0 / 100.0 * xic_plot.intensity_max);
 
     let mut cc = ChartBuilder::on(&root_area)
         .margin(5)
         .set_all_label_area_size(40)
         .build_cartesian_2d(
-            xic_plot.clone().rt_min..xic_plot.clone().rt_max,
-            xic_plot.clone().intensity_min..top,
+            xic_plot.rt_min..xic_plot.rt_max,
+            xic_plot.intensity_min..top,
         )
         .into_diagnostic()?;
 
@@ -141,7 +141,7 @@ fn main() -> Result<()> {
 
     xic.content.into_iter().for_each(|x| match x {
         OutputContent::Content {
-            meta,
+            meta: _,
             retention_times,
             intensities,
         } => {
@@ -151,9 +151,9 @@ fn main() -> Result<()> {
             }
         }
         OutputContent::ContentBase64 {
-            meta,
-            retention_times,
-            intensities,
+            meta: _,
+            retention_times: _,
+            intensities: _,
         } => todo!(),
     });
 
